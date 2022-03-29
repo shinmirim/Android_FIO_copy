@@ -6,5 +6,5 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "FIO_MIRIM"
+rootProject.name = "FLO"
 include ':app'
