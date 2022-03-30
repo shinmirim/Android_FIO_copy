@@ -25,8 +25,8 @@ class HomeFragment : Fragment() {
                 .commitAllowingStateLoss()
         }
 
-        val bannerAdapter = BannerVPAdapter(this)
-        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp))
+        val bannerAdapter = BannerVPAdapter(this)//초기
+        bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp))//추가할 프래그먼트를 가로 안에 써준다.
         bannerAdapter.addFragment(BannerFragment(R.drawable.img_home_viewpager_exp2))
         binding.homeBannerVp.adapter = bannerAdapter
         binding.homeBannerVp.orientation = ViewPager2.ORIENTATION_HORIZONTAL

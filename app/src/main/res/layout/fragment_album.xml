@@ -107,6 +107,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/album_album_iv"
         app:layout_constraintEnd_toEndOf="@+id/album_album_iv" />
 
+    <!-- 탭부분-->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/album_content_tb"
         android:layout_width="match_parent"

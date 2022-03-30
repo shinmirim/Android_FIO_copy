@@ -28,9 +28,10 @@ class AlbumFragment : Fragment() {
                     .commitAllowingStateLoss()
         }
 
-        val albumAdapter = AlbumVPAdapter(this)
-        binding.albumContentVp.adapter = albumAdapter
-        TabLayoutMediator(binding.albumContentTb, binding.albumContentVp){
+        val albumAdapter = AlbumVPAdapter(this)//초기화
+
+        binding.albumContentVp.adapter = albumAdapter//어댑터와 연결
+       TabLayoutMediator(binding.albumContentTb, binding.albumContentVp){//  TabLayoutMediator viewpager2와 연결하는 중개자역할
             tab, position ->
             tab.text = information[position]
         }.attach()

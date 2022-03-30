@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.flo.databinding.FragmentBannerBinding
 
-class BannerFragment(val imgRes : Int) : Fragment() {
+class BannerFragment(val imgRes : Int) : Fragment() {// fragment 상속 받음
 
     lateinit var  binding : FragmentBannerBinding
 
