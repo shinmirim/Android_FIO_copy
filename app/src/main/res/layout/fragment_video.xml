@@ -1,17 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="영상 프래그먼트"
-        android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:orientation="vertical"
+      tools:ignore="MissingConstraints"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent">
+
+
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="20dp"
+          android:layout_marginTop="20dp"
+          android:layout_marginEnd="20dp">
+
+          <LinearLayout
+              android:id="@+id/album_video_all"
+              android:layout_width="70dp"
+              android:layout_height="20dp"
+              android:orientation="horizontal"
+              app:layout_constraintEnd_toEndOf="parent">
+
+              <TextView
+                  android:id="@+id/album_video_trend_tv"
+                  android:layout_width="40dp"
+                  android:layout_height="match_parent"
+                  android:text="최신순"
+                  android:textColor="@color/black" />
+
+              <ImageView
+                  android:id="@+id/album_video_button_iv"
+                  android:layout_width="30dp"
+                  android:layout_height="wrap_content"
+                  android:src="@drawable/nugu_btn_down" />
+
+
+          </LinearLayout>
+
+          <androidx.cardview.widget.CardView
+              android:id="@+id/album_video_iu"
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginTop="20dp"
+              android:layout_gravity="center"
+              app:layout_constraintTop_toBottomOf="@id/album_video_all">
+
+            <ImageView
+                android:id="@+id/album_video_list1_iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/album_video_mv"/>
+
+          </androidx.cardview.widget.CardView>
+
+          <!--위의 뷰에 텍스트 뷰가 들어가서 체인이 될 줄 알았는데 되지 않아 궁금증-->
+          <TextView
+              android:id="@+id/album_video_list1_name_tv"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="15dp"
+              android:text="[MV]Coin"
+              android:textStyle="bold"
+              android:textColor="@color/black"
+              app:layout_constraintTop_toBottomOf="@id/album_video_iu"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="아이유 (IU) | 2021.03.26"
+              app:layout_constraintTop_toBottomOf="@id/album_video_list1_name_tv"/>
+
+          <androidx.cardview.widget.CardView
+              android:id="@+id/album_video_iu2"
+              android:layout_width="match_parent"
+              android:layout_height="200dp"
+              android:layout_marginTop="70dp"
+              android:layout_gravity="center"
+              app:layout_constraintTop_toBottomOf="@id/album_video_iu">
+
+              <ImageView
+                  android:id="@+id/album_video_list2_iv"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:scaleType="fitXY"
+                  android:src="@drawable/album_video2_mv"/>
+
+          </androidx.cardview.widget.CardView>
+
+          <TextView
+              android:id="@+id/album_video_list2_name_tv"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="15dp"
+              android:text="[MV] 라일락 (LILAC)"
+              android:textStyle="bold"
+              android:textColor="@color/black"
+              app:layout_constraintTop_toBottomOf="@id/album_video_iu2"/>
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="아이유 (IU) | 2021.03.24"
+              app:layout_constraintTop_toBottomOf="@id/album_video_list2_name_tv"/>
+
+
+
+
+
+
+
+
+
+
+
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
