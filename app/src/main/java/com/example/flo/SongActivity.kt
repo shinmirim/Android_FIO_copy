@@ -27,21 +27,21 @@ class SongActivity : AppCompatActivity() {
 
 
 
-        // if(intent.hasExtra("title") && intent.hasExtra("singer")){
-           // binding.songMusicTitleTv.text = intent.getStringExtra("title")
-            //binding.songSingerNameTv.text = intent.getStringExtra("singer")
-       // }
+        //if(intent.hasExtra("title") && intent.hasExtra("singer")){
+           //binding.songMusicTitleTv.text = intent.getStringExtra("title")
+           //binding.songSingerNameTv.text = intent.getStringExtra("singer")
+       //}
 
         binding.songDownIb.setOnClickListener {
             finish()
         }
 
         binding.songMiniplayerIv.setOnClickListener {
-            setPlayerStatus(false)
+            setPlayerStatus(true)
         }
 
         binding.songPauseIv.setOnClickListener {
-            setPlayerStatus(true)
+            setPlayerStatus(false)
         }
 
 
@@ -71,7 +71,7 @@ class SongActivity : AppCompatActivity() {
                 intent.getStringExtra("title")!!,
                 intent.getStringExtra("singer")!!,
                 intent.getIntExtra("second",0),
-                intent.getIntExtra("playTime",0),
+                intent.getIntExtra("playTime",60),
                 intent.getBooleanExtra("isPlaying",false)
 
             )
@@ -86,11 +86,11 @@ class SongActivity : AppCompatActivity() {
         timer.isPlaying=isPlaying
 
         if(isPlaying){
-            binding.songMiniplayerIv.visibility = View.VISIBLE
-            binding.songPauseIv.visibility = View.GONE
-        } else {
             binding.songMiniplayerIv.visibility = View.GONE
             binding.songPauseIv.visibility = View.VISIBLE
+        } else {
+            binding.songMiniplayerIv.visibility = View.VISIBLE
+            binding.songPauseIv.visibility = View.GONE
         }
     }
 
