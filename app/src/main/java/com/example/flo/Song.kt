@@ -5,8 +5,9 @@ package com.example.flo
 
 data class Song(
         val title : String = "",
-        val singer : String = ""
-//    val startTime : String = "",
-//    val endTime : String = "",
-//    val isplaying : Boolean = false
+        val singer : String = "",
+        val second : Int=0,// 노래가 얼만큼 재생되었는지
+        val playTime : Int=0, //총 재생시간
+
+        var isPlaying : Boolean = false// 지금 노래가 재생중인
 )
