@@ -6,13 +6,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.example.flo.databinding.ActivityMainBinding
+import com.google.gson.Gson
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
-    //private  var song:Song = Song()
-    lateinit var song: Song
+    private  var song:Song = Song()
+    //lateinit var song: Song
     lateinit var timer :Timer
+    private  var gson: Gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +26,12 @@ class MainActivity : AppCompatActivity() {
 
         //song 데이터 받아오기
         initSong()
-        setMiniPlayer(song)
+        //setMiniPlayer(song)
 
 
         initBottomNavigation()
 
-        val song = Song(binding.mainMiniplayerTitleTv.text.toString(), binding.mainMiniplayerSingerTv.text.toString(),0,60,false)
+        //val song = Song(binding.mainMiniplayerTitleTv.text.toString(), binding.mainMiniplayerSingerTv.text.toString(),0,60,false,"old_pop")
 
 
 
@@ -37,7 +39,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,SongActivity::class.java)
             intent.putExtra("title", song.title)
             intent.putExtra("singer",song.singer)
-            startActivity(intent)
+            intent.putExtra("song",song.second)
+            intent.putExtra("playTime",song.playTime)
+            intent.putExtra("isPlaying",song.isPlaying)
+            intent.putExtra("music",song.music)
+            startActivity(intent)//메인에서 넘겨주고, SongActivitiy에서도 받아옴
+
 
             //버튼 클릭시 재생버튼으로 바뀔 수 있도록
             binding.mainMiniplayerBtn.setOnClickListener{
@@ -59,11 +66,11 @@ class MainActivity : AppCompatActivity() {
         timer.interrupt()
     }
 
-    private fun setMiniPlayer(song : Song){
-        binding.mainMiniplayerTitleTv.text = song.title
-        binding.mainMiniplayerSingerTv.text = song.singer
-        binding.mainMiniplayerProgressSb.progress = (song.second*100000)/song.playTime
-    }
+    //private fun setMiniPlayer(song : Song){
+        //binding.mainMiniplayerTitleTv.text = song.title
+       // binding.mainMiniplayerSingerTv.text = song.singer
+       // binding.mainMiniplayerProgressSb.progress = (song.second*100000)/song.playTime
+   // }
 
     //노래가 재생 중인지 아닌지 확인 함수
     fun setPlayerStatus (isPlaying : Boolean){
@@ -187,5 +194,25 @@ class MainActivity : AppCompatActivity() {
             }
             false
         }
+    }
+
+    private fun setMiniPlayer(song: Song) {
+        binding.mainMiniplayerTitleTv.text = song.title
+        binding.mainMiniplayerSingerTv.text = song.singer
+        binding.mainMiniplayerProgressSb.progress = (song.second * 100000)/song.playTime
+    }
+
+    override fun onStart(){
+        super.onStart()
+        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
+        val songJson = sharedPreferences.getString("songData",null )
+
+        song = if(songJson == null){
+            Song("라일락", "아이유(IU)",0,60,false,"music_lilac")
+        } else {
+            gson.fromJson(songJson, song::class.java) // sonJson을 자바 객체로 변환해줘라
+        }
+
+        setMiniPlayer(song)
     }
 }

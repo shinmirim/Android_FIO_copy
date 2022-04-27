@@ -213,7 +213,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/home_pannel_background_iv" />
 
-        <HorizontalScrollView
+        <!--<HorizontalScrollView
             android:id="@+id/home_today_music_oversea_hs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -345,7 +345,17 @@
 
                 </LinearLayout>
             </LinearLayout>
-        </HorizontalScrollView>
+        </HorizontalScrollView>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_today_music_album_rv"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_marginTop="10dp"
+            tools:listitem="@layout/item_album"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/home_today_music_total_tv"/>
 
         <!--기존 배너부분-->
 <!--        <ImageView-->
@@ -366,7 +376,7 @@
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_today_music_oversea_hs"/>
+            app:layout_constraintTop_toBottomOf="@id/home_today_music_album_rv"/>
 
         <TextView
             android:id="@+id/home_daily_music_title_tv"

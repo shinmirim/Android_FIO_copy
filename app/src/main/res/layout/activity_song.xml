@@ -129,7 +129,7 @@
         android:id="@+id/song_like_iv_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="@+id/song_album_iv"
         app:layout_constraintStart_toStartOf="@+id/song_album_iv"
@@ -197,7 +197,8 @@
         android:id="@+id/song_start_time_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:08"
+        android:text="00:00"
+        android:textSize="10sp"
         android:textColor="@color/select_color"
         app:layout_constraintStart_toStartOf="@id/song_progress_sb"
         app:layout_constraintTop_toBottomOf="@id/song_progress_sb" />
@@ -208,6 +209,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="01:00"
+        android:textSize="10sp"
         android:textColor="@color/gray_color"
         app:layout_constraintEnd_toEndOf="@id/song_progress_sb"
         app:layout_constraintTop_toBottomOf="@id/song_progress_sb" />

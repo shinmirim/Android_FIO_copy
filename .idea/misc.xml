@@ -33,13 +33,14 @@
         <entry key="..\:/Users/jungwoo/AndroidStudioProjects/udemy_android_flo/app/src/main/res/layout/item_song.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/splash.xml" value="0.13518518518518519" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/activity_song.xml" value="0.21095890410958903" />
+        <entry key="app/src/main/res/layout/activity_song.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2942708333333333" />
         <entry key="app/src/main/res/layout/fragment_album.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.128125" />
         <entry key="app/src/main/res/layout/fragment_song.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_video.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_album.xml" value="0.335" />
       </map>
     </option>
   </component>
