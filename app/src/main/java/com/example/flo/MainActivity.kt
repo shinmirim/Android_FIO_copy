@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        inputDummySongs()
+
+
 
 
         //song 데이터 받아오기
@@ -201,6 +204,59 @@ class MainActivity : AppCompatActivity() {
         binding.mainMiniplayerSingerTv.text = song.singer
         binding.mainMiniplayerProgressSb.progress = (song.second * 100000)/song.playTime
     }
+
+
+
+    private fun inputDummySongs(){
+        val songDB = SongDatabase.getInstance(this)!!
+        val songs = songDB.songDao().getSongs()//데이터가 이미 있다면 종료, 데이터가 없다면 넣어줌
+
+        if (songs.isNotEmpty()) return
+
+        //데이터 삽임은 DAO에 insert로 내부에 송데이터 클래스 넣어줌
+        songDB.songDao().insert(
+            Song(
+                "old",
+                "아이유(iu)",
+                0,
+                230,
+                false,
+                "old_pop",
+                 R.drawable.img_album_exp,
+                false,
+            )
+        )
+
+        songDB.songDao().insert(
+            Song(
+                "old",
+                "아이유(iu)",
+                0,
+                230,
+                false,
+                "old_pop",
+                R.drawable.img_album_exp,
+                false,
+            )
+        )
+
+        songDB.songDao().insert(
+            Song(
+                "old",
+                "아이유(iu)",
+                0,
+                230,
+                false,
+                "old_pop",
+                R.drawable.img_album_exp,
+                false,
+            )
+        )
+
+        val _songs = songDB.songDao().getSongs()
+        Log.d("DB data", _songs.toString())//로그를 사용해 들어간 데이터 확인
+    }
+
 
     override fun onStart(){
         super.onStart()
