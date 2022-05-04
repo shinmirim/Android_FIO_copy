@@ -39,15 +39,22 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.mainPlayerCl.setOnClickListener {
-            val intent = Intent(this,SongActivity::class.java)
-            intent.putExtra("title", song.title)
-            intent.putExtra("singer",song.singer)
-            intent.putExtra("song",song.second)
-            intent.putExtra("playTime",song.playTime)
-            intent.putExtra("isPlaying",song.isPlaying)
-            intent.putExtra("music",song.music)
-            startActivity(intent)//메인에서 넘겨주고, SongActivitiy에서도 받아옴
+            //val intent = Intent(this,SongActivity::class.java)
+            //intent.putExtra("title", song.title)
+            //intent.putExtra("singer",song.singer)
+            //intent.putExtra("song",song.second)
+            //intent.putExtra("playTime",song.playTime)
+            //intent.putExtra("isPlaying",song.isPlaying)
+            //intent.putExtra("music",song.music)
+            //startActivity(intent)//메인에서 넘겨주고, SongActivitiy에서도 받아옴
 
+            //song에 아이디로 저장시킬수 있도록
+            val editor = getSharedPreferences("song", MODE_PRIVATE).edit()
+            editor.putInt("songId",song.id)
+            editor.apply()
+
+            val intent = Intent(this,SongActivity::class.java)
+            startActivity(intent)
 
             //버튼 클릭시 재생버튼으로 바뀔 수 있도록
             binding.mainMiniplayerBtn.setOnClickListener{
@@ -253,6 +260,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+        //데이터가 잘 들어갔는지 확인해보기
         val _songs = songDB.songDao().getSongs()
         Log.d("DB data", _songs.toString())//로그를 사용해 들어간 데이터 확인
     }
@@ -260,15 +268,28 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart(){
         super.onStart()
-        val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
-        val songJson = sharedPreferences.getString("songData",null )
+        //val sharedPreferences = getSharedPreferences("song", MODE_PRIVATE)
+        //val songJson = sharedPreferences.getString("songData",null )
 
-        song = if(songJson == null){
-            Song("라일락", "아이유(IU)",0,60,false,"music_lilac")
-        } else {
-            gson.fromJson(songJson, song::class.java) // sonJson을 자바 객체로 변환해줘라
+        //song = if(songJson == null){
+            //Song("라일락", "아이유(IU)",0,60,false,"music_lilac")
+        //} else {
+            //gson.fromJson(songJson, song::class.java) // sonJson을 자바 객체로 변환해줘라
+        //}
+
+        val spf = getSharedPreferences("song", MODE_PRIVATE)
+        val songId = spf.getInt("songId",0)
+
+        val songDB = SongDatabase.getInstance(this)!!
+
+        song  = if(songId ==0){
+            songDB.songDao().getSongs(1)
+
+        }else{
+            songDB.songDao().getSongs(songId)
+
         }
-
+        Log.d("song ID", song.id.toString())
         setMiniPlayer(song)
     }
 }
