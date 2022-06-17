@@ -81,6 +81,11 @@ class SongActivity : AppCompatActivity() {
             moveSong(-1)
         }
 
+        binding.songLikeIv.setOnClickListener{
+
+            setLike(songs[nowPos].isLike)
+        }
+
 
     }
 
@@ -109,14 +114,21 @@ class SongActivity : AppCompatActivity() {
         //binding.songMusicTitleTv.text = intent.getStringExtra("title")
         binding.songMusicTitleTv.text = song.title
         binding.songSingerNameTv.text = song.singer
-        binding.songStartTimeTv.text =
-            String.format("%02d:%02d", song.second / 60, song.second % 60)
-        binding.songEndTimeTv.text =
-            String.format("%02d:%02d", song.playTime / 60, song.playTime % 60)
+        binding.songStartTimeTv.text = String.format("%02d:%02d", song.second / 60, song.second % 60)
+        binding.songEndTimeTv.text = String.format("%02d:%02d", song.playTime / 60, song.playTime % 60)
         binding.songAlbumIv.setImageResource(song.coverImg!!)
         binding.songProgressSb.progress = (song.second * 1000 / song.playTime)
+
         val music = resources.getIdentifier(song.music, "raw", this.packageName) //ㄹㅣ소스를 반환 받아줌
         mediaPlayer = MediaPlayer.create(this, music)// 미디어 플레이어에게 이 음악을 재생할 거야라는 것을 알려줌
+
+        //좋아요 버튼
+        if(song.isLike){
+            binding.songLikeIv.setImageResource(R.drawable.ic_my_like_on)
+
+        }else{
+            binding.songLikeIv.setImageResource(R.drawable.ic_my_like_off)
+        }
 
         setPlayerStatus(song.isPlaying)
     }
@@ -142,6 +154,18 @@ class SongActivity : AppCompatActivity() {
         Log.d("now Song ID", songs[nowPos].id.toString())
         startTimer()
         setPlayer(songs[nowPos])
+    }
+
+    private fun setLike(isLike: Boolean){
+        songs[nowPos].isLike =!isLike
+        songDB.songDao().updateIsLikeById(!isLike,songs[nowPos].id)
+
+        if(!isLike){
+            binding.songLikeIv.setImageResource(R.drawable.ic_my_like_on)
+        }else{
+            binding.songLikeIv.setImageResource(R.drawable.ic_my_like_off)
+        }
+
     }
 
     private fun moveSong(direct: Int){

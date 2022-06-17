@@ -223,12 +223,12 @@ class MainActivity : AppCompatActivity() {
         //데이터 삽임은 DAO에 insert로 내부에 송데이터 클래스 넣어줌
         songDB.songDao().insert(
             Song(
-                "old",
+                "lilac",
                 "아이유(iu)",
                 0,
                 230,
                 false,
-                "old_pop",
+                "music_bboom",
                  R.drawable.img_album_exp,
                 false,
             )
@@ -236,12 +236,12 @@ class MainActivity : AppCompatActivity() {
 
         songDB.songDao().insert(
             Song(
-                "old",
+                "lilac",
                 "아이유(iu)",
                 0,
                 230,
                 false,
-                "old_pop",
+                "music_boy",
                 R.drawable.img_album_exp,
                 false,
             )
@@ -249,12 +249,12 @@ class MainActivity : AppCompatActivity() {
 
         songDB.songDao().insert(
             Song(
-                "old",
+                "lilac",
                 "아이유(iu)",
                 0,
                 230,
                 false,
-                "old_pop",
+                "music_butter",
                 R.drawable.img_album_exp,
                 false,
             )
